@@ -1,0 +1,8 @@
+[project]
+name = "project-chimera"
+version = "0.1.0"
+description = "Spec-driven agentic infrastructure for autonomous AI influencers"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
