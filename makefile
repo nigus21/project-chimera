@@ -1,11 +1,17 @@
-.PHONY: setup test spec-check
+.PHONY: setup lint test security spec-check
 
 setup:
-	python -m venv .venv && . .venv/bin/activate && pip install pytest
+	python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
+
+lint:
+	flake8 .
+	black --check .
+
+security:
+	bandit -r .
 
 test:
-	docker build -t chimera-test .
-	docker run --rm chimera-test
+	pytest
 
 spec-check:
 	@echo "Spec alignment check placeholder — to be enforced by AI agents"

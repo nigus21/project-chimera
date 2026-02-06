@@ -1,12 +1,6 @@
-# Project Chimera
+# Project Chimera — Autonomous AI Influencer System
 
-Project Chimera is a spec-driven, agentic infrastructure designed to build
-and govern Autonomous AI Influencers.
+## Overview
+Project Chimera is a spec-driven system for building autonomous AI agents that research trends, plan content, and publish to social platforms safely and reliably.
 
-This repository prioritizes:
-- Spec-Driven Development (SDD)
-- Agentic Orchestration
-- MLOps & Governance
-- Traceability via MCP
-
-Implementation follows only after specifications are ratified.
+## Repository Structure
