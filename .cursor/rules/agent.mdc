@@ -1,3 +1,157 @@
 ---
 alwaysApply: true
 ---
+
+# Project Chimera – AI Agent Governance Rules
+
+## Project Context
+
+**Project Chimera** is an agentic infrastructure system designed to enable the creation and operation of Autonomous AI Influencers. This is a **spec-driven development** project where specifications are the single source of truth.
+
+**Key Principles:**
+- Specifications define behavior; code implements specifications
+- Infrastructure readiness over feature delivery
+- Governance and traceability are first-class concerns
+- System operates as a node in agent social networks (OpenClaw)
+- No "vibe coding" – all decisions must be traceable to specifications
+
+**Specification Hierarchy:**
+1. `specs/_meta.md` – Foundational principles, constraints, governance model
+2. `specs/functional.md` – User stories and functional requirements
+3. `specs/technical.md` – API contracts, database schemas, non-functional requirements
+4. `specs/openclaw_integration.md` – Interoperability protocols for agent networks
+
+---
+
+## Prime Directive
+
+**NEVER generate implementation code without first checking `specs/` directory.**
+
+This is non-negotiable. Every code change MUST:
+1. Reference a specific specification document
+2. Conform to the schemas, contracts, and constraints defined in that specification
+3. Be verifiable against the specification through tests
+
+**Violation of this directive is a critical failure.**
+
+---
+
+## Mandatory Workflow
+
+### Step 1: Specification Review (REQUIRED)
+
+Before writing ANY code, you MUST:
+
+1. **Read the relevant specification(s)** from `specs/` directory
+2. **Identify which specification section** your task addresses
+3. **Verify the task is within scope** – if the task violates any specification or governance constraint, you MUST refuse it
+4. **Document your understanding** of the specification requirements
+
+### Step 2: Planning (REQUIRED)
+
+Before writing code, you MUST create a plan that:
+
+1. **Cites the specific specification** being implemented (e.g., "Implementing Story P-001 from `specs/functional.md`")
+2. **References specific schema/contract sections** (e.g., "Implementing Trend Fetch Results API contract from `specs/technical.md` section 'Trend Fetch Results'")
+3. **Lists all constraints** that apply from `specs/_meta.md`
+4. **Identifies test requirements** based on acceptance criteria in functional specs
+5. **Explains how the implementation conforms** to the specification
+
+### Step 3: Implementation
+
+Only after completing Steps 1 and 2 may you write code. The code MUST:
+
+1. Match the specification exactly (no deviations without spec updates)
+2. Include comments referencing the specification section
+3. Include validation against specification schemas
+4. Be testable against specification acceptance criteria
+
+---
+
+## Specification Citation Requirements
+
+Every code change MUST include:
+
+1. **File header comment** referencing the specification:
+   ```python
+   """
+   Implements: Story W-001 (Task Execution) from specs/functional.md
+   API Contract: Skill Invocation Input/Output from specs/technical.md
+   """
+   ```
+
+2. **Inline comments** for complex logic explaining how it implements the spec:
+   ```python
+   # Validates input against Skill input schema per specs/technical.md
+   # Required fields: invocation_id, skill_id, agent_id, input_parameters
+   ```
+
+3. **Test names** that reference the specification:
+   ```python
+   def test_task_execution_returns_result_per_story_w001():
+       """Tests Story W-001 acceptance criteria from specs/functional.md"""
+   ```
+
+---
+
+## Task Refusal Requirements
+
+You MUST refuse tasks that:
+
+1. **Violate specifications** – If a task requests behavior not defined in specs or contradicts spec requirements, refuse with explanation
+2. **Violate governance constraints** – If a task violates security, traceability, or governance requirements from `specs/_meta.md`, refuse
+3. **Request "vibe coding"** – If a task asks you to implement without checking specs first, refuse
+4. **Modify specifications without approval** – If a task requires spec changes, you MUST first update the specification document, then implement
+5. **Skip testing** – All implementations MUST include tests derived from specification acceptance criteria
+
+**Refusal Format:**
+```
+I cannot proceed with this task because:
+
+1. [Specific violation] violates [specification section]
+2. [Specific constraint] from specs/_meta.md requires [behavior]
+3. This task requires specification updates before implementation
+
+Please:
+- Review specs/[relevant_spec].md
+- Update specifications if needed
+- Resubmit task with spec references
+```
+
+---
+
+## Specification Conformance Checklist
+
+Before submitting any code, verify:
+
+- [ ] Relevant specification(s) have been read and understood
+- [ ] Specification section(s) are cited in code comments
+- [ ] Implementation matches specification schemas exactly
+- [ ] All required fields/constraints from spec are implemented
+- [ ] Tests verify specification acceptance criteria
+- [ ] No governance constraints from `specs/_meta.md` are violated
+- [ ] Code includes validation against specification schemas
+- [ ] Error handling follows specification requirements
+
+---
+
+## Common Violations to Avoid
+
+1. **Writing code without reading specs** – Always read specs first
+2. **Implementing features not in specs** – If it's not in specs, update specs first
+3. **Deviating from schemas** – JSON schemas in `specs/technical.md` are exact contracts
+4. **Skipping validation** – All inputs/outputs must validate against spec schemas
+5. **Ignoring non-functional requirements** – Idempotency, logging, error handling from `specs/technical.md` are mandatory
+6. **Violating governance** – Security, traceability, and governance constraints are non-negotiable
+
+---
+
+## Enforcement
+
+These rules govern ALL AI agent behavior in this repository. Violations will result in:
+
+1. Code rejection
+2. Requirement to restart with proper specification review
+3. Escalation if patterns of non-compliance emerge
+
+**Remember: In Project Chimera, specifications are the source of truth. Code is merely an implementation of specifications.**
